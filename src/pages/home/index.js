@@ -236,14 +236,15 @@ class index extends Component {
                 dots="false"
               >
                 {content.slice(0, 4).map((data, i) => (
-                  <Link to={`/produk/detail/${data._id}`} style={{textDecoration: "none", color: "#000"}}>
+                  
                     <Box component="div" px={1}>
                       <img
                         src={data.image.photo}
                         className={classes.images}
                         style={{ height: 150 }}
                       />
-                      <Typography variant="h5">{data.name}</Typography>
+                      <Link to={`/produk/detail/${data._id}`} style={{textDecoration: "none", color: "#000"}}><Typography variant="h5">{data.name}</Typography>
+                      </Link>
                       <Box
                         component="div"
                         display="flex"
@@ -267,7 +268,6 @@ class index extends Component {
                         )}
                       </Box>
                     </Box>
-                  </Link>
                 ))}
               </Slider>
             </Box>
