@@ -97,7 +97,7 @@ class promo extends Component {
           {
             tableBody: promo.data
           },
-          () => console.log(this.state.promo)
+          () => console.log(this.state.tableBody)
         );
       });
     // .then(log => console.log(log));
