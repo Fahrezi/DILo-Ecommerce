@@ -236,7 +236,7 @@ class index extends Component {
                 dots="false"
               >
                 {content.slice(0, 4).map((data, i) => (
-                  <Link to={`/produk/detail/${data._id}`}>
+                  <Link to={`/produk/detail/${data._id}`} style={{textDecoration: "none", color: "#000"}}>
                     <Box component="div" px={1}>
                       <img
                         src={data.image.photo}
