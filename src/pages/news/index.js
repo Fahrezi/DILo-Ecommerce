@@ -47,8 +47,26 @@ const imagesNews = [
 ];
 
 class index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      news: []
+    }
+  }
+
+  getNews() {
+    fetch("https://dilo-ecommerce.herokuapp.com/api/news")
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          news: data.data
+        });
+      });
+  }
+
   render() {
     const { classes } = this.props;
+    const {news} = this.state;
     const settings = {
       dots: true,
       dotsClass: "slick-dots slick-thumb",
@@ -64,10 +82,10 @@ class index extends Component {
     return (
       <div>
         <Slider {...settings}>
-          {imagesNews.map(({ src, judul }, i) => (
+          {news.slice(0, 3).map(({ thumbnail, title }, i) => (
             <Box component="div" key={i} position="relative">
               <img
-                src={src}
+                src={thumbnail}
                 className={classes.images}
                 alt="gambar"
                 style={{ height: 500 }}
@@ -91,30 +109,30 @@ class index extends Component {
                     color: "#fff"
                   }}
                 >
-                  {judul}
+                  {title}
                 </Typography>
               </Box>
             </Box>
           ))}
         </Slider>
         <Grid container spacing={3}>
-          {imagesNews.map((data, i) => (
+          {news.slice(3).map((data, i) => (
             <Grid item md={3}>
               <img
-                src={data.src}
+                src={data.thumbnail}
                 className={classes.images}
                 alt="gambar"
                 style={{ height: 200 }}
               />
               <Link
-                to={`/news/detail/${i}`}
+                to={`/news/detail/${data._id}`}
                 style={{
                   textDecoration: "none",
                   color: "#000"
                 }}
               >
                 <Typography variant="h5" style={{ marginLeft: 10 }}>
-                  {data.judul}
+                  {data.title}
                 </Typography>
               </Link>
             </Grid>

@@ -1,46 +1,75 @@
-import React from "react";
+import React, { Component } from "react";
 import { Grid, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({}));
 
-const NewsDetail = props => (
-  <>
-    <Grid container spacing={4}>
-      <Grid item md={9}>
-        <Typography variant="h3" gutterBottom>
-          Fashion Untuk Kamu
-        </Typography>
-        <img
-          src={require("../../../img-lib/houston-ray-bkZlpn5iMEM-unsplash.jpg")}
-          style={{ height: 500, width: "100%" }}
-        />
-        <Typography variant="body1">
-          pkokoeanrua gamgie ajfd ajdefknaa ifciadfnmeaihfiadfdajlnf
-          iijeafijeagf aefiafm oajsifjiean fjaifea faefajekfa fiajekfjia sfkamfi
-          jaefafmsjfie amfk aejfjaifjieaf aie fieafkjfia fiaefkj aifjafmaijfia
-          fafguwhrgnjrwguf dfjiejfafie fiakfjieja fej afijakfjia fakf ifaif
-          afakjfi ajflflgtjnv9rpowjuewofj dsfewfdfjifajdjasfjdef
-        </Typography>
-      </Grid>
-      <Grid item md={3}>
-        <Typography variant="h5" gutterBottom>
-          Berita Lainnya
-        </Typography>
-        {[1, 2, 3].map(data => (
-          <>
-            <img
-              src={require("../../../img-lib/houston-ray-bkZlpn5iMEM-unsplash.jpg")}
-              style={{ height: 150, width: "100%" }}
-            />
-            <Typography variant="h5" gutterBottom>
-              Fashion Untuk Kamu
+class NewsDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      news: {},
+      allNews: []
+    };
+  }
+
+  getNews(id) {
+    fetch(`https://dilo-ecommerce.herokuapp.com/api/news/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          news: data
+        });
+      });
+  }
+
+  getAllNews() {
+    fetch("https://dilo-ecommerce.herokuapp.com/api/news")
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          allNews: data.data
+        });
+      });
+  }
+
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.getNews(id);
+  }
+
+  render() {
+    const { news, allNews } = this.state;
+    return (
+      <>
+        <Grid container spacing={4}>
+          <Grid item md={9}>
+            <Typography variant="h3" gutterBottom>
+              {news.title}
             </Typography>
-          </>
-        ))}
-      </Grid>
-    </Grid>
-  </>
-);
+            <img src={news.thumbnail} style={{ height: 500, width: "100%" }} />
+            <Typography variant="body1">{news.body}</Typography>
+          </Grid>
+          <Grid item md={3}>
+            <Typography variant="h5" gutterBottom>
+              Berita Lainnya
+            </Typography>
+            {allNews.slice(0, 2).map(data => (
+              <>
+                <img
+                  src={data.thumbnail}
+                  style={{ height: 150, width: "100%" }}
+                />
+                <Typography variant="h5" gutterBottom>
+                  {data.title}
+                </Typography>
+              </>
+            ))}
+          </Grid>
+        </Grid>
+      </>
+    );
+  }
+}
 
 export default NewsDetail;

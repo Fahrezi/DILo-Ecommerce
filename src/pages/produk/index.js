@@ -181,7 +181,7 @@ class index extends Component {
                     >
                       <Typography variant="h5">{name}</Typography>
                     </Link>
-                    <Box component="div">
+                    <Box component="div" display="flex" flexDirection="column">
                       <Typography
                         variant="p"
                         color="secondary"

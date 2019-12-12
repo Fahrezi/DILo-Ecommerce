@@ -126,9 +126,23 @@ class produkDetail extends Component {
                     ))}
                   </Box>
                 </Box>
-                <Typography variant="h5" color="secondary">
-                  {product.price}
-                </Typography>
+                <Box component="div" display="flex" flexDirection="column">
+                      <Typography
+                        variant="p"
+                        color="secondary"
+                        style={{
+                          textDecoration: product.discountPrice && "line-through",
+                          color: product.discountPrice && "#000"
+                        }}
+                      >
+                        Rp.{product.price}
+                      </Typography>
+                      {product.discountPrice && (
+                        <Typography variant="p" color="secondary">
+                          {product.discountPrice}
+                        </Typography>
+                      )}
+                    </Box>
                 <Box component="div" display="flex" alignItems="center">
                   <Typography variant="body1">Ukuran : </Typography>
                   <FormControl
@@ -183,7 +197,7 @@ class produkDetail extends Component {
               Produk serupa
             </Typography>
             {allProduct ? (
-              allProduct.slice(0, 2).map(({ image, name, price, _id }, i) => (
+              allProduct.slice(0, 2).map(({ image, name, price, _id, discountPrice }, i) => (
                 <>
                   <img
                     src={image.photo}
@@ -202,9 +216,23 @@ class produkDetail extends Component {
                     >
                       <Typography variant="h5">{name}</Typography>
                     </Link>
-                    <Typography variant="p" color="secondary">
-                      {price}
-                    </Typography>
+                    <Box component="div" display="flex" flexDirection="column">
+                      <Typography
+                        variant="p"
+                        color="secondary"
+                        style={{
+                          textDecoration: discountPrice && "line-through",
+                          color: discountPrice && "#000"
+                        }}
+                      >
+                        Rp.{price}
+                      </Typography>
+                      {discountPrice && (
+                        <Typography variant="p" color="secondary">
+                          {discountPrice}
+                        </Typography>
+                      )}
+                    </Box>
                   </Box>
                 </>
               ))

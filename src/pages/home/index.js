@@ -167,7 +167,7 @@ class index extends Component {
         >
           <Fade in={open}>
             <Box component="div" position="relative">
-              <img src={imagesPop[0].src} className={classes.firstModal} />
+              <img src={this.state.promo.banner} className={classes.firstModal} />
               <Button
                 style={{
                   position: "absolute",
@@ -243,7 +243,7 @@ class index extends Component {
                       style={{ height: 150 }}
                     />
                     <Typography variant="h5">{data.name}</Typography>
-                    <Box component="div">
+                    <Box component="div" display="flex" flexDirection="column">
                       <Typography
                         variant="p"
                         color="secondary"
