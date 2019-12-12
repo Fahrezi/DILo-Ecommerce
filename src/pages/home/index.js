@@ -236,6 +236,7 @@ class index extends Component {
                 dots="false"
               >
                 {content.slice(0, 4).map((data, i) => (
+                  <Link to={`/produk/detail/${data._id}`}>
                   <Box component="div" px={1}>
                     <img
                       src={data.image.photo}
@@ -261,9 +262,11 @@ class index extends Component {
                       )}
                     </Box>
                   </Box>
+                  </Link>
                 ))}
               </Slider>
             </Box>
+            
           ))}
       </Fragment>
     );
