@@ -125,7 +125,7 @@ function ElevateAppBar(props) {
                       {popupState => (
                         <>
                           <NavLink
-                            to={`/${name}`}
+                            to={`/${data}`}
                             className={classes.link}
                             activeStyle={{
                               textAlign: "center",
@@ -136,7 +136,7 @@ function ElevateAppBar(props) {
                             aria-haspopup="true"
                             {...bindHover(popupState)}
                           >
-                            {name === "me" ? "account" : name}
+                            {data === "me" ? "account" : data}
                           </NavLink>
                           <Menu
                             {...bindMenu(popupState)}
