@@ -119,7 +119,7 @@ function ElevateAppBar(props) {
                 />
               </Link>
               <Grid container style={{ marginLeft: 20 }}>
-                {props.menu.map(({ name }, i) => (
+                {["produk", "admin"].map((data, i) => (
                   <Grid key={i} item md={2} style={{ fontSize: 18 }}>
                     <PopupState variant="popover" popupId="demoMenu">
                       {popupState => (
