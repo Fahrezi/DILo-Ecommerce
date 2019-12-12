@@ -35,9 +35,25 @@ class index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      menu: ["", "tagihan"]
+      menu: ["", "tagihan"],
+      user: {}
     };
   }
+
+  getUser(token) {
+    fetch("https:/dilo-ecommerce.herokuapp.com/api/me", {
+      headers:{
+        "authorization": token
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      this.setState({
+        user: data
+      }, () => console.log(this.state.user))
+    })
+  }
+
   render() {
     const { menu } = this.state;
     const { classes, user } = this.props;

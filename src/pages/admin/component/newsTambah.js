@@ -29,7 +29,6 @@ class newsTambah extends Component {
     super(props);
     this.state = {
       title: "",
-      slug: "",
       thumbnail: "",
       thumbnailDesc: "",
       body: null
@@ -60,7 +59,7 @@ class newsTambah extends Component {
   };
 
   addNews = () => {
-    const { title, slug, thumbnail, thumbnailDesc, body } = this.state;
+    const { title, thumbnail, thumbnailDesc, body } = this.state;
     fetch("https://dilo-ecommerce.herokuapp.com/api/admin/news", {
       method: "POST",
       body: JSON.stringify({
@@ -68,7 +67,6 @@ class newsTambah extends Component {
         thumbnail,
         thumbnailDesc,
         body,
-        slug
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8"
@@ -80,7 +78,7 @@ class newsTambah extends Component {
   };
 
   render() {
-    const { title, slug, thumbnail, thumbnailDesc, body } = this.state;
+    const { title, thumbnail, thumbnailDesc, body } = this.state;
     return (
       <>
         <Box
@@ -105,22 +103,6 @@ class newsTambah extends Component {
                 name="title"
                 id="my-input"
                 value={title}
-                aria-describedby="my-helper-text"
-                variant="outlined"
-                fullWidth="true"
-                onChange={this.changeHandler}
-              />
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item md={3}>
-              <Typography variant="body1">Slug :</Typography>
-            </Grid>
-            <Grid item md={9}>
-              <TextField
-                name="slug"
-                id="my-input"
-                value={slug}
                 aria-describedby="my-helper-text"
                 variant="outlined"
                 fullWidth="true"
