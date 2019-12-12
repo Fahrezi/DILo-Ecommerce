@@ -73,6 +73,7 @@ class index extends Component {
     this.state = {
       open: false,
       promo: [],
+      highlited: "",
       products: [],
       productsNewest: [],
       productsCheapest: [],
@@ -98,11 +99,16 @@ class index extends Component {
     fetch("https://dilo-ecommerce.herokuapp.com/api/admin/promos")
       .then(response => response.json())
       .then(promo => {
+        this.setState({
+          promo: promo.data
+        });
+      })
+      .then(() => {
         this.setState(
           {
-            promo: promo.data
+            highlited: this.state.promo[2].banner
           },
-          () => console.log(this.state.promo)
+          () => window.setTimeout(this.handleOpen, 3000)
         );
       });
     // .then(log => console.log(log));
@@ -132,15 +138,13 @@ class index extends Component {
       });
 
   componentDidMount() {
-    window.setTimeout(this.handleOpen, 3000);
-
     this.getProduct();
     this.getPromo();
   }
 
   render() {
     const { classes } = this.props;
-    const { open, promo, promoRight, products } = this.state;
+    const { open, promo, promoRight, products, highlited } = this.state;
     const settings = {
       dots: true,
       dotsClass: "slick-dots slick-thumb",
@@ -167,7 +171,7 @@ class index extends Component {
         >
           <Fade in={open}>
             <Box component="div" position="relative">
-              <img src={promo[0].banner} className={classes.firstModal} />
+              <img src={highlited} className={classes.firstModal} />
               <Button
                 style={{
                   position: "absolute",

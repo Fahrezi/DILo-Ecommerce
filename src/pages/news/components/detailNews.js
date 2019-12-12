@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Box, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({}));
@@ -61,8 +62,8 @@ class NewsDetail extends Component {
             <Typography variant="h5" gutterBottom>
               Berita Lainnya
             </Typography>
-            {allNews.slice(0, 2).map(data => (
-              <Link to={`/news/detail/${data.slug}`}>
+            {allNews.filter(allNews => allNews.slug !== news.slug).slice(0, 2).map(data => (
+              <Link to={`/news/detail/${data.slug}`} onClick={() => this.getNews(data.slug)}>
                 <img
                   src={data.thumbnail}
                   style={{ height: 150, width: "100%" }}
