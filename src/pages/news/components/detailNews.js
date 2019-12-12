@@ -19,7 +19,7 @@ class NewsDetail extends Component {
       .then(data => {
         this.setState({
           news: data
-        });
+        }, () => console.log(this.state.news));
       });
   }
 
@@ -29,7 +29,7 @@ class NewsDetail extends Component {
       .then(data => {
         this.setState({
           allNews: data.data
-        });
+        }, () => console.log(this.state.allNews));
       });
   }
 

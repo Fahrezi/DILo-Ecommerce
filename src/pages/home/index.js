@@ -167,7 +167,7 @@ class index extends Component {
         >
           <Fade in={open}>
             <Box component="div" position="relative">
-              <img src={this.state.promo.banner} className={classes.firstModal} />
+              <img src={this.state.promo[0].banner} className={classes.firstModal} />
               <Button
                 style={{
                   position: "absolute",
