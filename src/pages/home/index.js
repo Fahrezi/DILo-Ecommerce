@@ -167,7 +167,7 @@ class index extends Component {
         >
           <Fade in={open}>
             <Box component="div" position="relative">
-              <img src={this.state.promo[0].banner} className={classes.firstModal} />
+              <img src={imagesPop[0].src} className={classes.firstModal} />
               <Button
                 style={{
                   position: "absolute",
@@ -237,36 +237,40 @@ class index extends Component {
               >
                 {content.slice(0, 4).map((data, i) => (
                   <Link to={`/produk/detail/${data._id}`}>
-                  <Box component="div" px={1}>
-                    <img
-                      src={data.image.photo}
-                      className={classes.images}
-                      style={{ height: 150 }}
-                    />
-                    <Typography variant="h5">{data.name}</Typography>
-                    <Box component="div" display="flex" flexDirection="column">
-                      <Typography
-                        variant="p"
-                        color="secondary"
-                        style={{
-                          textDecoration: data.discountPrice && "line-through",
-                          color: data.discountPrice && "#000"
-                        }}
+                    <Box component="div" px={1}>
+                      <img
+                        src={data.image.photo}
+                        className={classes.images}
+                        style={{ height: 150 }}
+                      />
+                      <Typography variant="h5">{data.name}</Typography>
+                      <Box
+                        component="div"
+                        display="flex"
+                        flexDirection="column"
                       >
-                        {data.price}
-                      </Typography>
-                      {data.discountPrice && (
-                        <Typography variant="p" color="secondary">
-                          {data.discountPrice}
+                        <Typography
+                          variant="p"
+                          color="secondary"
+                          style={{
+                            textDecoration:
+                              data.discountPrice && "line-through",
+                            color: data.discountPrice && "#000"
+                          }}
+                        >
+                          {data.price}
                         </Typography>
-                      )}
+                        {data.discountPrice && (
+                          <Typography variant="p" color="secondary">
+                            {data.discountPrice}
+                          </Typography>
+                        )}
+                      </Box>
                     </Box>
-                  </Box>
                   </Link>
                 ))}
               </Slider>
             </Box>
-            
           ))}
       </Fragment>
     );
