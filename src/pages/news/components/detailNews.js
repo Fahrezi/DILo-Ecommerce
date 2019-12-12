@@ -17,9 +17,12 @@ class NewsDetail extends Component {
     fetch(`https://dilo-ecommerce.herokuapp.com/api/news/${id}`)
       .then(res => res.json())
       .then(data => {
-        this.setState({
-          news: data
-        }, () => console.log(this.state.news));
+        this.setState(
+          {
+            news: data.data
+          },
+          () => console.log(this.state.news)
+        );
       });
   }
 
@@ -27,9 +30,12 @@ class NewsDetail extends Component {
     fetch("https://dilo-ecommerce.herokuapp.com/api/news")
       .then(res => res.json())
       .then(data => {
-        this.setState({
-          allNews: data.data
-        }, () => console.log(this.state.allNews));
+        this.setState(
+          {
+            allNews: data.data
+          },
+          () => console.log(this.state.allNews)
+        );
       });
   }
 
@@ -56,7 +62,7 @@ class NewsDetail extends Component {
               Berita Lainnya
             </Typography>
             {allNews.slice(0, 2).map(data => (
-              <>
+              <Link to={`/news/detail/${data.slug}`}>
                 <img
                   src={data.thumbnail}
                   style={{ height: 150, width: "100%" }}
@@ -64,7 +70,7 @@ class NewsDetail extends Component {
                 <Typography variant="h5" gutterBottom>
                   {data.title}
                 </Typography>
-              </>
+              </Link>
             ))}
           </Grid>
         </Grid>

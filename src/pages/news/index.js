@@ -68,7 +68,7 @@ class index extends Component {
   }
 
   componentDidMount() {
-    this.getNews()
+    this.getNews();
   }
 
   render() {
@@ -123,7 +123,7 @@ class index extends Component {
           ))}
         </Slider>
         <Grid container spacing={3}>
-          {news.slice(3).map((data, i) => (
+          {news.map((data, i) => (
             <Grid item md={3}>
               <img
                 src={data.thumbnail}
@@ -132,7 +132,7 @@ class index extends Component {
                 style={{ height: 200 }}
               />
               <Link
-                to={`/news/detail/${data._id}`}
+                to={`/news/detail/${data.slug}`}
                 style={{
                   textDecoration: "none",
                   color: "#000"
