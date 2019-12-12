@@ -162,7 +162,7 @@ class index extends Component {
               </FormControl>
             </Grid>
             <Grid container spacing={4} style={{ marginTop: 50 }}>
-              {product.map(({ image, _id, name, price }, i) => (
+              {product.map(({ image, _id, name, price, discountPrice }, i) => (
                 <Grid item md={4} key={i}>
                   <img
                     src={image ? image.photo : images[0].src}
@@ -181,9 +181,23 @@ class index extends Component {
                     >
                       <Typography variant="h5">{name}</Typography>
                     </Link>
-                    <Typography variant="p" color="secondary">
-                      {price}
-                    </Typography>
+                    <Box component="div">
+                      <Typography
+                        variant="p"
+                        color="secondary"
+                        style={{
+                          textDecoration: discountPrice && "line-through",
+                          color: discountPrice && "#000"
+                        }}
+                      >
+                        Rp.{price}
+                      </Typography>
+                      {discountPrice && (
+                        <Typography variant="p" color="secondary">
+                          {discountPrice}
+                        </Typography>
+                      )}
+                    </Box>
                   </Box>
                 </Grid>
               ))}

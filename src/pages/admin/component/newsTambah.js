@@ -63,7 +63,7 @@ class newsTambah extends Component {
     fetch("https://dilo-ecommerce.herokuapp.com/api/admin/news", {
       method: "POST",
       body: {
-        title,
+        title: "test",
         thumbnail,
         thumbnailDesc,
         body,
