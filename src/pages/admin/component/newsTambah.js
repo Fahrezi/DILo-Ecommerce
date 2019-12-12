@@ -62,14 +62,14 @@ class newsTambah extends Component {
     const { title, thumbnail, thumbnailDesc, body } = this.state;
     fetch("https://dilo-ecommerce.herokuapp.com/api/admin/news", {
       method: "POST",
-      body: JSON.stringify({
+      body: {
         title,
         thumbnail,
         thumbnailDesc,
         body,
-      }),
+      },
       headers: {
-        "Content-type": "application/json; charset=UTF-8"
+        "Content-type": "application/x-www-form-urlencoded"
       }
     })
       .then(res => res.json())

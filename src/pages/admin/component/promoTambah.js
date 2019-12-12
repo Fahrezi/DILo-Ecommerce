@@ -65,9 +65,9 @@ class tambahPromo extends Component {
     // console.log(data);
     fetch("https://dilo-ecommerce.herokuapp.com/api/admin/promos", {
       method: "POST",
-      body: JSON.stringify(data),
+      body: data,
       headers: {
-        "Content-type": "application/json; charset=UTF-8"
+        "Content-type": "application/x-www-form-urlencoded"
         // "Access-Control-Allow-Origin": true
       }
     })

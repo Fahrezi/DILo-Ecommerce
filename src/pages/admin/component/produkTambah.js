@@ -120,7 +120,7 @@ class produkTambah extends Component {
     } = this.state;
     fetch("https://dilo-ecommerce.herokuapp.com/api/admin/products", {
       method: "POST",
-      body: JSON.stringify({
+      body: {
         categoryId: kategori._id,
         name,
         price,
@@ -130,9 +130,9 @@ class produkTambah extends Component {
         discount,
         photo: imgPreview,
         photoDescription
-      }),
+      },
       headers: {
-        "Content-type": "application/json; charset=UTF-8"
+        "Content-type": "application/x-www-form-urlencoded"
       }
     })
       .then(res => res.json())
