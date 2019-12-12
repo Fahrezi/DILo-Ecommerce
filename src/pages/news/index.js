@@ -51,22 +51,29 @@ class index extends Component {
     super(props);
     this.state = {
       news: []
-    }
+    };
   }
 
   getNews() {
     fetch("https://dilo-ecommerce.herokuapp.com/api/news")
       .then(res => res.json())
       .then(data => {
-        this.setState({
-          news: data.data
-        });
+        this.setState(
+          {
+            news: data.data
+          },
+          () => console.log(this.state.news)
+        );
       });
+  }
+
+  componentDidMount() {
+    this.getNews()
   }
 
   render() {
     const { classes } = this.props;
-    const {news} = this.state;
+    const { news } = this.state;
     const settings = {
       dots: true,
       dotsClass: "slick-dots slick-thumb",

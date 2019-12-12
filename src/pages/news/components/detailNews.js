@@ -36,6 +36,7 @@ class NewsDetail extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.getNews(id);
+    this.getAllNews();
   }
 
   render() {
